@@ -1,0 +1,30 @@
+baseURL: https://example.org/
+languageCode: en-us
+title: FarFetch'd
+theme: PaperMod
+params:
+  defaultTheme: dark
+  homeInfoParams:
+    Title: "A bit Farfetch'd innit?"
+    Content: >-
+      Welcome to my website.
+  socialIcons:
+    - name: email
+      url: 'mailto:techwithbhargav@gmail.com'
+
+assets:
+  favicon16x16: /assets/farfetchd_favicon_16x16.png
+  favicon32x32: /assets/farfetchd_favicon_32x32.png
+
+favicon: favicon.ico
+menu:
+  main:
+  - identifier: home
+    name: Home
+    url: /
+    weight: 10
+  - identifier: posts
+    name: Blog
+    url: /posts/
+    weight: 20
+
