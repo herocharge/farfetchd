@@ -9,11 +9,13 @@
     <lastBuildDate>Thu, 01 Jan 1970 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My first blog post</title>
-      <link>http://localhost:1313/posts/test/</link>
+      <title>Binning in FHE with CKKS encoding</title>
+      <link>http://localhost:1313/posts/ckks_binning/</link>
       <pubDate>Thu, 01 Jan 1970 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/test/</guid>
-      <description>&lt;p&gt;Hi!&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/ckks_binning/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Fully homomorphic encryption (FHE) let&amp;rsquo;s you perform computation on encrypted data. There are many different FHE schemes. Along with the encryption schemes, there is usually an encoding scheme which can take numbers in one space and turn them into numbers which can be encrypted using the encryption scheme. One such encoding scheme which can encode complex numbers is CKKS.&lt;/p&gt;
+&lt;p&gt;I will not get into the details of how FHE internals work. For the purposes of this blog, I will be using a nice abstraction provided by the Microsoft SEAL library. In fact, I will be using a python wrapper of the library called tenseal.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
