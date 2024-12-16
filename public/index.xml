@@ -4,10 +4,24 @@
     <title>FarFetch&#39;d</title>
     <link>http://localhost:1313/</link>
     <description>Recent content on FarFetch&#39;d</description>
-    <generator>Hugo -- 0.138.0</generator>
+    <generator>Hugo -- 0.139.4</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Jan 1970 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About thinking time in LLMs</title>
+      <link>http://localhost:1313/posts/thinking_time_llms/</link>
+      <pubDate>Mon, 16 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/thinking_time_llms/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Note: citation needed&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s take a detour and think about how WE(for the humans reading this blog) think.
+Our thinking time depends on the question posed. Every question has a certain complexity.&lt;br&gt;
+This complexity isn&amp;rsquo;t necessarily proportional to the length of the question (number of characters).&lt;/p&gt;
+&lt;p&gt;For example, something like &lt;code&gt;&amp;quot;If I have 2 sons and 2 daughters, how many kids do I have?&amp;quot;&lt;/code&gt;(58 characters) is easy,
+because it is essentially asking 2+2. Well&amp;hellip; you do need to have knowledge of english and the understanding that both daughters and sons count as kids equally(although some seem to disagree).&lt;br&gt;
+Whereas the question &lt;code&gt;&amp;quot;What is the 13337th digit of PI?&amp;quot;&lt;/code&gt;(32 characters) is much harder because one needs to start computing the digits of PI upto the 13337th digit, which I don&amp;rsquo;t think a human has enough patience to do even if they have all the requisite knowledge.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Binning in FHE with CKKS encoding</title>
       <link>http://localhost:1313/posts/ckks_binning/</link>

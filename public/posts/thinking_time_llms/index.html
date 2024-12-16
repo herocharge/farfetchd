@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>About thinking time in LLMs | FarFetch&#39;d</title>
+<meta name="keywords" content="">
+<meta name="description" content="Introduction
+Note: citation needed
+Let&rsquo;s take a detour and think about how WE(for the humans reading this blog) think.
+Our thinking time depends on the question posed. Every question has a certain complexity.
+This complexity isn&rsquo;t necessarily proportional to the length of the question (number of characters).
+For example, something like &quot;If I have 2 sons and 2 daughters, how many kids do I have?&quot;(58 characters) is easy,
+because it is essentially asking 2&#43;2. Well&hellip; you do need to have knowledge of english and the understanding that both daughters and sons count as kids equally(although some seem to disagree).
+Whereas the question &quot;What is the 13337th digit of PI?&quot;(32 characters) is much harder because one needs to start computing the digits of PI upto the 13337th digit, which I don&rsquo;t think a human has enough patience to do even if they have all the requisite knowledge.">
+<meta name="author" content="Herocharge">
+<link rel="canonical" href="http://localhost:1313/posts/thinking_time_llms/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/thinking_time_llms/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="FarFetch&#39;d (Alt + H)">FarFetch&#39;d</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      About thinking time in LLMs
+    </h1>
+    <div class="post-meta"><span title='2024-12-16 00:00:00 +0000 UTC'>December 16, 2024</span>&nbsp;·&nbsp;Herocharge
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#introduction" aria-label="Introduction">Introduction</a><ul>
+                        
+                <li>
+                    <a href="#so-how-do-we-measure-question-complexity" aria-label="So how do we measure question complexity?">So how do we measure question complexity?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#what-is-the-thinking-time-of-an-llm" aria-label="What is the thinking time of an LLM?">What is the thinking time of an LLM?</a><ul>
+                        
+                <li>
+                    <a href="#so-what-can-we-do" aria-label="So what can we do?">So what can we do?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h3 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h3>
+<p>Note: citation needed</p>
+<p>Let&rsquo;s take a detour and think about how WE(for the humans reading this blog) think.
+Our thinking time depends on the question posed. Every question has a certain complexity.<br>
+This complexity isn&rsquo;t necessarily proportional to the length of the question (number of characters).</p>
+<p>For example, something like <code>&quot;If I have 2 sons and 2 daughters, how many kids do I have?&quot;</code>(58 characters) is easy,
+because it is essentially asking 2+2. Well&hellip; you do need to have knowledge of english and the understanding that both daughters and sons count as kids equally(although some seem to disagree).<br>
+Whereas the question <code>&quot;What is the 13337th digit of PI?&quot;</code>(32 characters) is much harder because one needs to start computing the digits of PI upto the 13337th digit, which I don&rsquo;t think a human has enough patience to do even if they have all the requisite knowledge.</p>
+<h4 id="so-how-do-we-measure-question-complexity">So how do we measure question complexity?<a hidden class="anchor" aria-hidden="true" href="#so-how-do-we-measure-question-complexity">#</a></h4>
+<p>Well a good benchmark would be the average amount of time it would take a human to answer the question, but this is infeasible to create such a dataset (right?). What do humans do when we think (ideally?). If there is an easy way to check the correctness of an answer we try to guess (an educated guess?) till we feel like guessing won&rsquo;t work. Then we actually put in some effort, start with all the knowledge we know and then slowly deduce the conclusion from the axioms. We can define the complexity of the question to be the number of steps it would take to deduce the conclusion/answer from the axioms.<br>
+But there maybe more than 1 way to deduce the conclusion&hellip;&hellip;
+We could pick the shortest path, but that doesn&rsquo;t capture the fact that humans are on average dumb(oops). We need to take into account the size of search space for the reasoning steps, this is probably directly proportional to the number of axioms we begin with, so the larger the initial knowledge base the more chances for us to make mistakes (Worse when contradictory knowledge exists simultaneously).</p>
+<blockquote>
+<p>This actually a very important observation! The complexity of a question doesn&rsquo;t only depend on the
+question but also on the initial knowledge of the person you are asking the question to. For example, for the question &ldquo;Do you really think the earth is flat?&rdquo; most people would say &ldquo;No&rdquo;, but some individuals(cough, flatearthers, cough) might start prepping a powerpoint to explain how you are wrong.</p>
+</blockquote>
+<p>We can take the average number of steps of deduction, this might partially capture the number of possible deduction paths. However the problem with this is that at some point we might need to actually compute all the possible deduction paths and this might actually be pushing NP-hard territory. We went from being practially infeasible to theoretically infeasible? (good job bhargav)</p>
+<p>Ok this was a rather long detour, the point is there isn&rsquo;t really a good way to capture complexity of a question a.k.a prompt. This means that thinking time for both humans and LLMs would probably vary a lot on the actual question and any deadline on the thinking time would inevitably make some questions out of scope.</p>
+<h3 id="what-is-the-thinking-time-of-an-llm">What is the thinking time of an LLM?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-thinking-time-of-an-llm">#</a></h3>
+<p>For a long time now, one of the marketed features of LLMs are their context length (number of tokens you can expect an LLM to digest before it starts producing shit, eww weird). The transformer architecture doesn&rsquo;t inherently put a limit on the number of tokens it can generate. You can scale the attention mechanism to however many tokens as long as it fits in memory. Also the inference time scales quadratically with the number of tokens. The real constraint is training for larger context lengths[citation needed]. Why? idk, look it up. Anyway, we can think of the transformer &ldquo;thinking&rdquo; once when producing a single token.</p>
+<p>When producing a new token, we deterministically process the weights of the transformer and the already produced tokens.<code> We can draw a very loose analogy between weights of transformer to initial knowledge base of a person and the already produced tokens to be steps that are deduced prior from initial knowledge base. (TLDR, tokens are deduction steps, weights are axioms)</code> This would mean longer the context, the more the deduction steps. This just means it&rsquo;s thinking more, no guarantee if it&rsquo;s thinking in the right direction or about relevant things (cough, -insert distracting thing-, cough).</p>
+<p>We can artificially increase the thinking time of the LLM by forcing it to produce special tokens called <code>thinking tokens</code> (TODO: cite paper). However, the paper only implements having the same thinking token everywhere, which is counterintuitive because it&rsquo;s like stating the same deduction step everywhere (it actually works decently because our analogy is dogshit.). It&rsquo;s however still not optimal. My friend @vnnm is working on a version of this which can incorporate local context, which should give better results as it&rsquo;s different reasoning steps.</p>
+<p>Moving on&hellip;</p>
+<p>It would be foolish to not talk about chain of thought and it&rsquo;s sister methods (tree of thought and graph of thought and categories of thought(coming soon 2207)). These methods are more closer to our analogy because we literally beg the LLM to produce intermediate reasoning steps in the form of natural language. The X of thought methods should&rsquo;ve been enough, as they only really stop when they are done reasoning and can basically go on forever if you allow for it. (Oh nvm we still have to deal with the limit of context length).</p>
+<p>There is an inherent contradiction here.</p>
+<blockquote>
+<p>If we increase the amount of initial world knowledge then there is more of a chance to pursue a spurious or inefficient line of deduction, if we decrease the amount of inital world knowledge we might not meet the deadline posed by memory or context length because we need more deduction steps.</p>
+</blockquote>
+<p>One might say increasing the inital world knowledge doesn&rsquo;t automatically make reasoning worse, which I agree with but when we are dealing with probablistic things (the dataset introduces uncertainity), it inevitably makes things worse.</p>
+<h4 id="so-what-can-we-do">So what can we do?<a hidden class="anchor" aria-hidden="true" href="#so-what-can-we-do">#</a></h4>
+<p>There are two things we can do - have a better initial knowledge base and have a better way to come up with the next deduction step.</p>
+<p>A better initial knowledge base would consist of few facts but those which convey a lot of information. We need something like a lossy compression of the knowledge base. This is probably why finetuning works so well, the knowledge base is very specific and small and the tasks the finetuned models perform won&rsquo;t need to work well outside their domain.</p>
+<p>A better reasoning process is a much harder thing to actually come up. By better we mean more efficient, i.e., requiring fewer deduction steps(aka tokens) or a single token representing multiple deduction steps. Thinking tokens which are context aware are again a good way to do it because we can train them to be as efficient as we want (easier said than done).</p>
+<p>What if I don&rsquo;t want special tokens?<br>
+How does an LLM decide on a particular token (aka deduction step)?<br>
+The transformer does all the processing on prior knowledge and deduction and produces a probability distribution over the possible tokens. Picking one token is a lossy step because we lose a lot of the information that was being conveyed by the probability distribution. Picking the correct token here matters a lot! We can use better sampling techniques like entropy based sampling (another rabbit hole, TODO: cite paper). And things like multiprediction are approaches to use.</p>
+<h3 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h3>
+<p>Why restrict ourselves to tokens?<br>
+We might need a better way to represent our deduction steps (again, the analogy isn&rsquo;t perfect but you get the point). We need to focus more on how the LLM selects it&rsquo;s line of thought than trying to make it longer or shorter. And&hellip;</p>
+<p>Don&rsquo;t listen to me. I&rsquo;m dumb.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">FarFetch&#39;d</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
