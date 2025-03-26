@@ -138,8 +138,7 @@ But there maybe more than 1 way to deduce the conclusion&hellip;&hellip;
 We could pick the shortest path, but that doesn&rsquo;t capture the fact that humans are on average dumb(oops). We need to take into account the size of search space for the reasoning steps, this is probably directly proportional to the number of axioms we begin with, so the larger the initial knowledge base the more chances for us to make mistakes (Worse when contradictory knowledge exists simultaneously).</p>
 <blockquote>
 <p>This actually a very important observation! The complexity of a question doesn&rsquo;t only depend on the
-question but also on the initial knowledge of the person you are asking the question to. For example, for the question &ldquo;Do you really think the earth is flat?&rdquo; most people would say &ldquo;No&rdquo;, but some individuals(cough, flatearthers, cough) might start prepping a powerpoint to explain how you are wrong.</p>
-</blockquote>
+question but also on the initial knowledge of the person you are asking the question to. For example, for the question &ldquo;Do you really think the earth is flat?&rdquo; most people would say &ldquo;No&rdquo;, but some individuals(cough, flatearthers, cough) might start prepping a powerpoint to explain how you are wrong.</p></blockquote>
 <p>We can take the average number of steps of deduction, this might partially capture the number of possible deduction paths. However the problem with this is that at some point we might need to actually compute all the possible deduction paths and this might actually be pushing NP-hard territory. We went from being practially infeasible to theoretically infeasible? (good job bhargav)</p>
 <p>Ok this was a rather long detour, the point is there isn&rsquo;t really a good way to capture complexity of a question a.k.a prompt. This means that thinking time for both humans and LLMs would probably vary a lot on the actual question and any deadline on the thinking time would inevitably make some questions out of scope.</p>
 <h3 id="what-is-the-thinking-time-of-an-llm">What is the thinking time of an LLM?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-thinking-time-of-an-llm">#</a></h3>
@@ -150,8 +149,7 @@ question but also on the initial knowledge of the person you are asking the ques
 <p>It would be foolish to not talk about chain of thought and it&rsquo;s sister methods (tree of thought and graph of thought and categories of thought(coming soon 2207)). These methods are more closer to our analogy because we literally beg the LLM to produce intermediate reasoning steps in the form of natural language. The X of thought methods should&rsquo;ve been enough, as they only really stop when they are done reasoning and can basically go on forever if you allow for it. (Oh nvm we still have to deal with the limit of context length).</p>
 <p>There is an inherent contradiction here.</p>
 <blockquote>
-<p>If we increase the amount of initial world knowledge then there is more of a chance to pursue a spurious or inefficient line of deduction, if we decrease the amount of inital world knowledge we might not meet the deadline posed by memory or context length because we need more deduction steps.</p>
-</blockquote>
+<p>If we increase the amount of initial world knowledge then there is more of a chance to pursue a spurious or inefficient line of deduction, if we decrease the amount of inital world knowledge we might not meet the deadline posed by memory or context length because we need more deduction steps.</p></blockquote>
 <p>One might say increasing the inital world knowledge doesn&rsquo;t automatically make reasoning worse, which I agree with but when we are dealing with probablistic things (the dataset introduces uncertainity), it inevitably makes things worse.</p>
 <h4 id="so-what-can-we-do">So what can we do?<a hidden class="anchor" aria-hidden="true" href="#so-what-can-we-do">#</a></h4>
 <p>There are two things we can do - have a better initial knowledge base and have a better way to come up with the next deduction step.</p>
@@ -176,7 +174,7 @@ We might need a better way to represent our deduction steps (again, the analogy 
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="http://localhost:1313/">FarFetch&#39;d</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:1313/">FarFetch&#39;d</a></span> · 
 
     <span>
         Powered by

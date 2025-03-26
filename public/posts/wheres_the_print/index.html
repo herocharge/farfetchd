@@ -5,11 +5,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Tags | FarFetch&#39;d</title>
+<title>where tf is the print statement | FarFetch&#39;d</title>
 <meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/tags/">
+<meta name="description" content="I was revisting one of my projects from a long time ago. It was written in python and I wanted to quickly run and see the output. But once I run it I am immediately bombarded with a tonne of &ldquo;debug print&rdquo; statements. Well&hellip;. I don&rsquo;t use debuggers for python.
+I commented out all the debug prints. Luckily I always include a &ldquo;[HERO]&rdquo; tag in my debug prints (I should&rsquo;ve used loggers instead). Anyway, I ran the code again, and&hellip;. there is still a debug print remaining. I can see it in the output. I went through the code again and again but couldnt find it.">
+<meta name="author" content="Herocharge">
+<link rel="canonical" href="http://localhost:1313/posts/wheres_the_print/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -18,8 +19,7 @@
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/index.xml">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/wheres_the_print/">
 <noscript>
     <style>
         #theme-toggle,
@@ -31,7 +31,7 @@
 </noscript>
 </head>
 
-<body class="list dark" id="top">
+<body class=" dark" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "light") {
         document.body.classList.remove('dark')
@@ -81,12 +81,43 @@
     </nav>
 </header>
 <main class="main">
-<header class="page-header">
-    <h1>Tags</h1>
-</header>
 
-<ul class="terms-tags">
-</ul>
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      where tf is the print statement
+    </h1>
+    <div class="post-meta"><span title='2025-03-26 00:00:00 +0000 UTC'>March 26, 2025</span>&nbsp;·&nbsp;Herocharge
+
+</div>
+  </header> 
+
+  <div class="post-content"><p>I was revisting one of my projects from a long time ago. It was written in python and I wanted to quickly run and see the output. But once I run it I am immediately bombarded with a tonne of &ldquo;debug print&rdquo; statements. Well&hellip;. I don&rsquo;t use debuggers for python.</p>
+<p>I commented out all the debug prints. Luckily I always include a &ldquo;[HERO]&rdquo; tag in my debug prints (I should&rsquo;ve used loggers instead). Anyway, I ran the code again, and&hellip;. there is still a debug print remaining. I can see it in the output. I went through the code again and again but couldnt find it.</p>
+<p>Then it hit me, I must&rsquo;ve edited one of the library codes. Pip, fantastically enough, downloads the source code as long as it is in python so if I want to really deeply debug something I can always add a print statement inside that source code. I usually refrain from this because it would affect anything using that environment and I can&rsquo;t predict where that code is being called internally.</p>
+<p>But looks like that&rsquo;s the only explanation. Now I don&rsquo;t exactly remember where I added this print statement and there are 100s of library files to look at, what do I do?</p>
+<p>I know that the print happens in before any other print to stdout. I can use this information!
+Python, it turns out, let&rsquo;s you change what needs to happen when something prints to stdout</p>
+<p>So I did this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">exit_on_print</span>(message):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">&#34;Exiting program due to print statement&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sys<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>write <span style="color:#f92672">=</span> exit_on_print
+</span></span></code></pre></div><p>Now everytime someone tries to write to stdout, this function is called! and since I raise an exception, I get the stacktrace! And the stacktrace will contain the file name and line number of the print statement which tried to write to stdout.</p>
+<p>confidence++</p>
+<p>bye</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
     </main>
     
 <footer class="footer">
