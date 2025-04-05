@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>PyObserve: A Proposal | FarFetch&#39;d</title>
+<meta name="keywords" content="">
+<meta name="description" content="I don&rsquo;t know if this already exists but it just popped in my head like &ldquo;Yeah, that would be cool if it existed.&rdquo;
+Here&rsquo;s the problem. Whenever I write code in python notebooks, I forget to save the variables that I might wanna analyze later. I forget to use something like like tqdm to print a progress bar, so that I know how long the cell will run.
+Sometimes I don&rsquo;t forget and save most of things which I think I need, but later realize that I might want to see what the other variables were storing?">
+<meta name="author" content="Herocharge">
+<link rel="canonical" href="https://example.org/posts/pyobserve/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/pyobserve/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://example.org/posts/pyobserve/">
+  <meta property="og:site_name" content="FarFetch&#39;d">
+  <meta property="og:title" content="PyObserve: A Proposal">
+  <meta property="og:description" content="I don’t know if this already exists but it just popped in my head like “Yeah, that would be cool if it existed.”
+Here’s the problem. Whenever I write code in python notebooks, I forget to save the variables that I might wanna analyze later. I forget to use something like like tqdm to print a progress bar, so that I know how long the cell will run.
+Sometimes I don’t forget and save most of things which I think I need, but later realize that I might want to see what the other variables were storing?">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-05T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PyObserve: A Proposal">
+<meta name="twitter:description" content="I don&rsquo;t know if this already exists but it just popped in my head like &ldquo;Yeah, that would be cool if it existed.&rdquo;
+Here&rsquo;s the problem. Whenever I write code in python notebooks, I forget to save the variables that I might wanna analyze later. I forget to use something like like tqdm to print a progress bar, so that I know how long the cell will run.
+Sometimes I don&rsquo;t forget and save most of things which I think I need, but later realize that I might want to see what the other variables were storing?">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "PyObserve: A Proposal",
+      "item": "https://example.org/posts/pyobserve/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "PyObserve: A Proposal",
+  "name": "PyObserve: A Proposal",
+  "description": "I don\u0026rsquo;t know if this already exists but it just popped in my head like \u0026ldquo;Yeah, that would be cool if it existed.\u0026rdquo;\nHere\u0026rsquo;s the problem. Whenever I write code in python notebooks, I forget to save the variables that I might wanna analyze later. I forget to use something like like tqdm to print a progress bar, so that I know how long the cell will run.\nSometimes I don\u0026rsquo;t forget and save most of things which I think I need, but later realize that I might want to see what the other variables were storing?\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "I don’t know if this already exists but it just popped in my head like “Yeah, that would be cool if it existed.”\nHere’s the problem. Whenever I write code in python notebooks, I forget to save the variables that I might wanna analyze later. I forget to use something like like tqdm to print a progress bar, so that I know how long the cell will run.\nSometimes I don’t forget and save most of things which I think I need, but later realize that I might want to see what the other variables were storing?\nFor example, say I’m running an ML model, I might save some of the intermediate activations using hooks but I might forget to save other data that I might wanna analyze later. Hmmm, so what do we do?\nCan we pause execution? Python is an intepreted language right? Each line is executed one by one (It’s not JIT compiled (unless Im using some opt library, numba, etc)). We can probably just stop at a particular line, stop the interpreter, keep the state and resume when needed. Does pdb do this?\nYes, there a lot of problems with threads, etc. But we can probably agree on a fundamental block to pause on.\nHook code Once we pause the execution, it would nice if we can write extra code that can use live variables in the code and that executes in parallel to the actual code, once I resume the execution. This way I can add code which can save variables, or add a progress bar.\nWe know where the variables live, it should’nt be hard to add this functionality on a separate thread.\nBut what about the state that we lost before we paused? Should we store states periodically? This might take up too much storage and resources, and slow down execution.\n",
+  "wordCount" : "308",
+  "inLanguage": "en",
+  "datePublished": "2025-04-05T00:00:00Z",
+  "dateModified": "2025-04-05T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Herocharge"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/pyobserve/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "FarFetch'd",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://example.org/" accesskey="h" title="FarFetch&#39;d (Alt + H)">FarFetch&#39;d</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://example.org/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://example.org/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      PyObserve: A Proposal
+    </h1>
+    <div class="post-meta"><span title='2025-04-05 00:00:00 +0000 UTC'>April 5, 2025</span>&nbsp;·&nbsp;Herocharge
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#can-we-pause-execution" aria-label="Can we pause execution?">Can we pause execution?</a></li>
+                <li>
+                    <a href="#hook-code" aria-label="Hook code">Hook code</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>I don&rsquo;t know if this already exists but it just popped in my head like &ldquo;Yeah, that would be cool if it existed.&rdquo;</p>
+<p>Here&rsquo;s the problem. Whenever I write code in python notebooks, I forget to save the variables that I might wanna analyze later. I forget to use something like like <code>tqdm</code> to print a progress bar, so that I know how long the cell will run.</p>
+<p>Sometimes I don&rsquo;t forget and save most of things which I think I need, but later realize that I might want to see what the other variables were storing?</p>
+<p>For example, say I&rsquo;m running an ML model, I might save some of the intermediate activations using hooks but I might forget to save other data that I might wanna analyze later. Hmmm, so what do we do?</p>
+<h3 id="can-we-pause-execution">Can we pause execution?<a hidden class="anchor" aria-hidden="true" href="#can-we-pause-execution">#</a></h3>
+<p>Python is an intepreted language right? Each line is executed one by one (It&rsquo;s not JIT compiled (unless Im using some opt library, numba, etc)). We can probably just stop at a particular line, stop the interpreter, keep the state and resume when needed. Does pdb do this?</p>
+<p>Yes, there a lot of problems with threads, etc. But we can probably agree on a fundamental block to pause on.</p>
+<h3 id="hook-code">Hook code<a hidden class="anchor" aria-hidden="true" href="#hook-code">#</a></h3>
+<p>Once we pause the execution, it would nice if we can write extra code that can use live variables in the code and that executes in parallel to the actual code, once I resume the execution. This way I can add code which can save variables, or add a progress bar.</p>
+<p>We know where the variables live, it should&rsquo;nt be hard to add this functionality on a separate thread.</p>
+<p>But what about the state that we lost before we paused?
+Should we store states periodically?  This might take up too much storage and resources, and slow down execution.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://example.org/">FarFetch&#39;d</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

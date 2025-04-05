@@ -2,25 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>FarFetch&#39;d</title>
-    <link>http://localhost:1313/</link>
+    <link>https://example.org/</link>
     <description>Recent content on FarFetch&#39;d</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Percentage is weird</title>
+      <link>https://example.org/posts/percentage/</link>
+      <pubDate>Sat, 05 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/posts/percentage/</guid>
+      <description>&lt;p&gt;The idea of percentage 1%, 2%, 3%, &amp;hellip;., etc. is something pretty much everyone of learns in school. It&amp;rsquo;s a nice of way of capturing fractions. Instead of saying 1 hudredth, we can say 1 percent (rolls off the tongue easier too). We sometimes say 50% instead of half, to seem fancy perhaps. The number infront of the percent sign could be anything, so we can have 0.01% or 2000% and it still works (although a bit more confusing).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>PyObserve: A Proposal</title>
+      <link>https://example.org/posts/pyobserve/</link>
+      <pubDate>Sat, 05 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/posts/pyobserve/</guid>
+      <description>&lt;p&gt;I don&amp;rsquo;t know if this already exists but it just popped in my head like &amp;ldquo;Yeah, that would be cool if it existed.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s the problem. Whenever I write code in python notebooks, I forget to save the variables that I might wanna analyze later. I forget to use something like like &lt;code&gt;tqdm&lt;/code&gt; to print a progress bar, so that I know how long the cell will run.&lt;/p&gt;
+&lt;p&gt;Sometimes I don&amp;rsquo;t forget and save most of things which I think I need, but later realize that I might want to see what the other variables were storing?&lt;/p&gt;</description>
+    </item>
     <item>
       <title>where tf is the print statement</title>
-      <link>http://localhost:1313/posts/wheres_the_print/</link>
+      <link>https://example.org/posts/wheres_the_print/</link>
       <pubDate>Wed, 26 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/wheres_the_print/</guid>
+      <guid>https://example.org/posts/wheres_the_print/</guid>
       <description>&lt;p&gt;I was revisting one of my projects from a long time ago. It was written in python and I wanted to quickly run and see the output. But once I run it I am immediately bombarded with a tonne of &amp;ldquo;debug print&amp;rdquo; statements. Well&amp;hellip;. I don&amp;rsquo;t use debuggers for python.&lt;/p&gt;
 &lt;p&gt;I commented out all the debug prints. Luckily I always include a &amp;ldquo;[HERO]&amp;rdquo; tag in my debug prints (I should&amp;rsquo;ve used loggers instead). Anyway, I ran the code again, and&amp;hellip;. there is still a debug print remaining. I can see it in the output. I went through the code again and again but couldnt find it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>About thinking time in LLMs</title>
-      <link>http://localhost:1313/posts/thinking_time_llms/</link>
+      <link>https://example.org/posts/thinking_time_llms/</link>
       <pubDate>Mon, 16 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/thinking_time_llms/</guid>
+      <guid>https://example.org/posts/thinking_time_llms/</guid>
       <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
 &lt;p&gt;Note: citation needed&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s take a detour and think about how WE(for the humans reading this blog) think.
@@ -32,18 +48,18 @@ Whereas the question &lt;code&gt;&amp;quot;What is the 13337th digit of PI?&amp;
     </item>
     <item>
       <title>Binning in FHE with CKKS encoding</title>
-      <link>http://localhost:1313/posts/ckks_binning/</link>
+      <link>https://example.org/posts/ckks_binning/</link>
       <pubDate>Thu, 01 Jan 1970 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ckks_binning/</guid>
+      <guid>https://example.org/posts/ckks_binning/</guid>
       <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
 &lt;p&gt;Fully homomorphic encryption (FHE) let&amp;rsquo;s you perform computation on encrypted data. There are many different FHE schemes. Along with the encryption schemes, there is usually an encoding scheme which can take numbers in one space and turn them into numbers which can be encrypted using the encryption scheme. One such encoding scheme which can encode complex numbers is CKKS.&lt;/p&gt;
 &lt;p&gt;I will not get into the details of how FHE internals work. For the purposes of this blog, I will be using a nice abstraction provided by the Microsoft SEAL library. In fact, I will be using a python wrapper of the library called tenseal.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/posts/llm_addons/</link>
+      <link>https://example.org/posts/llm_addons/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/llm_addons/</guid>
+      <guid>https://example.org/posts/llm_addons/</guid>
       <description></description>
     </item>
   </channel>
