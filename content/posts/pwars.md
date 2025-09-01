@@ -237,7 +237,7 @@ while(!found_path) {
 Here we see that for every node we push a lot of nodes. By nature of the BFS, the number of pushes will always be more than number of pops. 
 I tried plotting the number of pushes vs pops for test case 1 and the following is what I got.
 
-![Push Plot graph](../../images/push_pop.png)
+![Push Plot graph](https://herocharge.github.io/farfetchd/images/push_pop.png)
 
 We see that the number of pushes are significantly more than the number of pops. (Ignore the labels in the graph, im too tired to change them)
 
@@ -312,7 +312,7 @@ I delete the linked list in two passes, one where I collect all the block heads 
 
 There is one last thing to discuss in Optimization 4. How many nodes should one preallocate?
 I played around with a bunch of number and the following is the result.
-![Performance plots](../../images/plot.png)
+![Performance plots](https://herocharge.github.io/farfetchd/images/plot.png)
 
 The numbers indicate the different preallocation block sizes.
 The plot also indicates some other minor optimizations such as loop unrolling and removing NULL checks. The optimal number depends on the machine you are running this on. 
