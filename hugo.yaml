@@ -27,4 +27,8 @@ menu:
     name: Blog
     url: /posts/
     weight: 20
+  - identifier: resume
+    name: Resume
+    url: /resume/
+    weight: 30
 
